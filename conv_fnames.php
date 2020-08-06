@@ -4,7 +4,7 @@
 // updated  2019-11-12
 // dirty script to tranform CodeCharge Studio files to work with PHP7.2
 // Mayo 2020: agrega modificaciones Carlos
-// Ultima modificación 20/julio/2020
+// Ultima modificación 30/jul/2020
 ///////////////////////////////////////////////
 
 /// exit if script is not called from command line
@@ -220,6 +220,7 @@ function fix_fnames($path)
 		$cnnt += $cnn;
 	}
 
+/*
 	//// replace each in Classes.php
 	$each4_pattern = preg_quote('while ($blnResult && list ($key, $Parameter) = each ($this->Parameters)) 
       {','/');
@@ -231,7 +232,7 @@ function fix_fnames($path)
 			continue;', $str_result,1,$cnn);
 		$cnnt += $cnn;
 	}
-
+*/
 
 	//// fix casting to int in DB_Adapter::PageCount()
 	$each5_pattern = preg_quote('return $this->PageSize && $this->RecordsCount != "CCS not counted" ? ceil($this->RecordsCount','/');
@@ -260,6 +261,44 @@ function fix_fnames($path)
 
 	}
 
+
+	//Repara Common.php
+	if(preg_match('/Common.php$/i', $path ))
+	{
+		//Corrige asignación de una variable que luego va a ser un array
+		$str_result=str_replace('$values = "";', '$value = [];', $str_result);
+	}
+
+	//Repara Classes.php
+	if(preg_match('/Classes.php$/i', $path ))
+	{
+		//Corrige asignación de una variable que debe ser nuemrica
+		$str_result=str_replace('$newVal = $this->Value + $this->prevValue;', '$newVal = floatval($this->Value) + floatval($this->prevValue);', $str_result);
+
+		//Corrige valores en asignación de valores
+		$str_result=str_replace('foreach ($Values as $Val) {', 'foreach ($Value as $val) {', $str_result);
+
+	}
+
+
+	//// replace each in Classes.php
+	$each4_pattern = preg_quote('while ($blnResult && list ($key, $Parameter) = each ($this->Parameters))','/');
+	if(preg_match('/Classes.php$/i', $path ) && 
+		preg_match( '/'.$each4_pattern .'/i' , $str_result)  )
+	{
+		$str_result=preg_replace('/'.$each4_pattern . '/i', 'foreach( $this->Parameters as $key=>$Parameter) ', $str_result,1,$cnn);
+		$cnnt += $cnn;
+	}
+
+
+	//Corrección en Classes.php por diferencias en saltos de carro
+	$each4_pattern = preg_quote('if($Parameter->GetValue() === "" && $Parameter->GetValue() !== false && $Parameter->UseIsNull === false)','/');
+	if(preg_match('/Classes.php$/i', $path ) && 
+		preg_match( '/'.$each4_pattern .'/i' , $str_result)  )
+	{
+		$str_result=preg_replace('/'.$each4_pattern . '/i', 'if(!$blnResult) continue;' . "\n\t\t\t" . 'if($Parameter->GetValue() === "" && $Parameter->GetValue() !== false && $Parameter->UseIsNull === false)', $str_result,1,$cnn);
+		$cnnt += $cnn;
+	}
 
 
 	if( $cnnt> 0 )
