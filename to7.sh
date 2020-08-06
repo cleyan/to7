@@ -18,7 +18,7 @@ then
 fi
 
 echo "Copiando Archivos a $1"7
-rsync -r "$1"/ "$1"7/ --exclude .git --exclude vendor --exclude .idea
+rsync -r --delete "$1"/ "$1"7/ --exclude .git --exclude vendor --exclude .idea
 
 if [ ! -d "$1"7 ]
 then
