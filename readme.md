@@ -7,17 +7,7 @@ Teniendo una carpeta llamada "proyecto" con el proyecto del código fuente de Co
 
 En el archivo de configuración se especifica el repositorio donde se guardará el código modificado y la ruta del binario de php que se quiere usar (en el caso que tengan mas de una versión de php en el sistema)
 
-Se debe corregir antes:
-```
-Archivo Classes.php
-Linea 1310:
-$newVal = floatval($this->Value) + floatval($this->prevValue);
-```
-```
-Archivo Common.php
-Linea 343:
-$values = [];	
-````
+Hay que renombrar to7.conf.template a to7.conf para que se lean los valores
 
 Como lo uso Yo (puede ser de otro modo, incluso se puede colcoar junto con el código):
 Tengo en el mismo nivel las carpetas
