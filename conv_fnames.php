@@ -301,6 +301,18 @@ function fix_fnames($path)
 	}
 
 
+	//Repara db_mysqli.php
+	if(preg_match('/db_mysqli.php$/i', $path ))
+	{
+		//Corrige Función de escape de caracteres para Driver MySQL Mejorado
+		$str_result=str_replace('function_exists("mysql_escape_string")', 'false', $str_result);
+
+		//Corrige Función de escape de caracteres para Driver MySQL Mejorado
+		$str_result=str_replace('mysql_escape_string($value)', 'addslashes($value)', $str_result);
+		
+	}
+
+
 	if( $cnnt> 0 )
 		$change_made = true;
 
