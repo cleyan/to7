@@ -4,7 +4,8 @@
 // updated  2019-11-12
 // dirty script to tranform CodeCharge Studio files to work with PHP7.2
 // Mayo 2020: agrega modificaciones Carlos
-// Ultima modificación 30/jul/2020
+// Julio 2010: Agrega compatibildad hasta php 7.3 
+// Ultima modificación 09/agosto/2020
 ///////////////////////////////////////////////
 
 /// exit if script is not called from command line
@@ -302,15 +303,23 @@ function fix_fnames($path)
 
 
 	//Repara db_mysqli.php
+	$each4_pattern = preg_quote('function_exists("mysql_escape_string")','/');
 	if(preg_match('/db_mysqli.php$/i', $path ))
 	{
 		//Corrige Función de escape de caracteres para Driver MySQL Mejorado
-		$str_result=str_replace('function_exists("mysql_escape_string")', 'false', $str_result);
-
-		//Corrige Función de escape de caracteres para Driver MySQL Mejorado
-		$str_result=str_replace('mysql_escape_string($value)', 'addslashes($value)', $str_result);
-		
+		$str_result=preg_replace('/'.$each4_pattern . '/i', 'false', $str_result,1,$cnn);
+		$cnnt += $cnn;
 	}
+
+	//Repara db_mysqli.php
+	$each4_pattern = preg_quote('mysql_escape_string($value)','/');
+	if(preg_match('/db_mysqli.php$/i', $path ))
+	{
+		//Corrige Función de escape de caracteres para Driver MySQL Mejorado
+		$str_result=preg_replace('/'.$each4_pattern . '/i', 'addslashes($value)', $str_result,1,$cnn);
+		$cnnt += $cnn;
+	}
+
 
 
 	if( $cnnt> 0 )
