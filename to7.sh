@@ -31,8 +31,8 @@ fi
 cd "$1"7
 
 if [ "$2" = "install" ]; then
-   "$php $composer" install 
-   "$php $composer" dump-autoload
+   "$php" "$composer" install 
+   "$php" "$composer" dump-autoload
 fi
 
 if [ "$2" = "commit" ]; then
@@ -45,8 +45,8 @@ if [ "$2" = "commit" ]; then
 fi
 
 if [ "$3" = "install" ]; then
-   "$php $composer" install
-   "$php $composer" dump-autoload
+   "$php" "$composer" install
+   "$php" "$composer" dump-autoload
 fi
 
 if [ "$3" = "commit" ]; then
