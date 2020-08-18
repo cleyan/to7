@@ -5,7 +5,10 @@ Este pequeño script ajusta el código generado en codecharge para ser compatibl
 ### Ejemplo de uso:
 Teniendo una carpeta llamada "proyecto" con el proyecto del código fuente de Codecharge
 
-En el archivo de configuración se especifica el repositorio donde se guardará el código modificado y la ruta del binario de php que se quiere usar (en el caso que tengan mas de una versión de php en el sistema)
+En el archivo de configuración se especifica:
+* repositorio: El repositorio (GIT) donde se guardará el código modificado
+* php: La ruta del binario de php que se quiere usar (en el caso que tengan mas de una versión de php en el sistema)
+* composer: La ruta del binario de composer, es necesario si se quiere ejecutar composer con otra versión de php distinta a la predeterminada del sistema
 
 Hay que renombrar to7.conf.template a to7.conf para que se lean los valores
 
