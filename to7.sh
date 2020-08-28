@@ -1,5 +1,11 @@
 #!/bin/bash
+if [ -z to7.conf ]; then
+  echo -e "\nFalta el archivo de configuracion to7.conf\n\n"
+  exit 1
+fi
+
 source to7.conf
+
 
 if [ -z "$origen" ]; then
   echo -e "\nPor favor configure la carpeta de origen en el archivo to7.conf\n\n"
