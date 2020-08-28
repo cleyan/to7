@@ -40,7 +40,7 @@ fi
 
 "$php" conv_fnames.php "$destino"
 
-aqui = "$(pwd)"
+aqui = `"$(pwd)"`
 cd "$destino"
 
 if [ "$1" == "--install" || "$1" == "-i" || "$2" == "--install" || "$2" == "-i" ]; then
