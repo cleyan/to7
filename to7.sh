@@ -1,61 +1,55 @@
 #!/bin/bash
 source to7.conf
 
-if [ -z "$1" ]; then
-  echo -e "\nPor favor especifique la carpeta de origen como parametro \nUso: $0 <carpeta_proyecto_original> [commit]\n\n"
+if [ -z "$origen" ]; then
+  echo -e "\nPor favor configure la carpeta de origen en el archivo to7.conf\n\n"
   exit 1
 fi
 
-if [ ! -d "$1" ] 
+if [ -z "$destino" ]; then
+  echo -e "\nPor favor configure la carpeta de destino en el archivo to7.conf\n\n"
+  exit 1
+fi
+
+if [ ! -d "$origen" ] 
 then
   echo "Error: Carpeta  de origen no existe."
   exit 1
 fi
 
-if [ ! -d "$1"7 ]
+if [ ! -d "$destino" ]
 then
-  git clone "$repositorio" "$1"7 
+  git clone "$repositorio" "$destino" 
 fi
 
-echo "Copiando Archivos a $1"7
-rsync -r --delete "$1"/ "$1"7/ --exclude .git --exclude vendor --exclude .idea
+echo "Copiando Archivos a $destino"
+rsync -r --delete "$origen"/ "$destino"/ --exclude .git --exclude vendor --exclude .idea
 
-if [ ! -d "$1"7 ]
+if [ ! -d "$destino" ]
 then
   echo "Error: Carpeta de destino no existe, hubo un problema!!."
   exit 1
 fi
 
 
-"$php" conv_fnames.php "$1"7
-cd "$1"7
+"$php" conv_fnames.php "$destino"
 
-if [ "$2" = "install" ]; then
+aqui = "$(pwd)"
+cd "$destino"
+
+if [ "$1" == "--install" || "$1" == "-i" || "$2" == "--install" || "$2" == "-i" ]; then
    "$php" "$composer" install 
    "$php" "$composer" dump-autoload
 fi
 
-if [ "$2" = "commit" ]; then
+if [  "$1" == "--commit" || "$1" == "-c" || "$2" == "--commit" || "$2" == "-c"  ]; then
 
    fecha=`date "+%d-%m-%Y %H:%M"`
 
    git add -A
-   git commit -m "Generacion de Codigo $fecha"
+   git commit -m "php 7.x compatible CCS code generated on $fecha"
    git push origin master
 fi
 
-if [ "$3" = "install" ]; then
-   "$php" "$composer" install
-   "$php" "$composer" dump-autoload
-fi
 
-if [ "$3" = "commit" ]; then
-
-   fecha=`date "+%d-%m-%Y %H:%M"`
-
-   git add -A
-   git commit -m "Generacion de Codigo $fecha"
-   git push origin master
-fi
-
-cd ..
+cd "$aqui"

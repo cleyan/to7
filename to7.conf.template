@@ -1,3 +1,5 @@
 repositorio="ruta del repositorio con código generado para php7.3"
 php="ruta del binario de php que deseas usar"
 composer="ruta al binario de composer ej:/usr/local/bin/composer"
+origen="carpeta del proyecto, por ejemplo ../proyecto (no debe terminar en /)"
+destino="carpeta del proyecto ya comvertido, por ejemplo ../proyecto7 (no debe terminar en /)"
