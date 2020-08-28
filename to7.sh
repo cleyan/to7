@@ -1,5 +1,5 @@
 #!/bin/bash
-if [ -z to7.conf ]; then
+if [ ! -e to7.conf ]; then
   echo -e "\nFalta el archivo de configuracion to7.conf\n\n"
   exit 1
 fi
