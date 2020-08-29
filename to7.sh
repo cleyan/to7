@@ -29,7 +29,7 @@ fi
 
 if [ ! -d "$origen" ] 
 then
-  echo "Error: Carpeta  de origen no existe."
+  echo "Error: Carpeta de origen $origen no existe."
   exit 1
 fi
 
@@ -43,7 +43,7 @@ rsync -r --delete "$origen"/ "$destino"/ --exclude .git --exclude vendor --exclu
 
 if [ ! -d "$destino" ]
 then
-  echo "Error: Carpeta de destino no existe, hubo un problema!!."
+  echo "Error: Carpeta de destino $destino no existe, hubo un problema!!."
   exit 1
 fi
 
