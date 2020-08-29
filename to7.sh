@@ -4,6 +4,16 @@ if [ ! -e to7.conf ]; then
   exit 1
 fi
 
+if [ "$1" = "--help" ] || [ "$1" = "-h" ] || [ "$2" = "--help" ] || [ "$2" = "-h" ] || [ "$3" = "--help" ] || [ "$3" = "-h" ]
+then
+   echo "Actualziador de Código generador por CodeCharge Studio 5.x para ser compatible con php 7.x"
+   echo "./to7.sh [-i | --install] [-c | --commit] [-h | --help]"
+   echo "-i --install  Ejecutar composer para instalar paquetes y dependiencias"
+   echo "-c --commit   Hace Commit+Push al repositio del código generado "
+   echo "-h --help     Ayuda del script" 
+   exit 1 
+fi
+
 source to7.conf
 
 
@@ -28,7 +38,7 @@ then
   git clone "$repositorio" "$destino" 
 fi
 
-echo "Copiando Archivos a $destino"
+echo "Copiando Archivos desde $origen a $destino"
 rsync -r --delete "$origen"/ "$destino"/ --exclude .git --exclude vendor --exclude .idea
 
 if [ ! -d "$destino" ]
@@ -40,16 +50,18 @@ fi
 
 "$php" conv_fnames.php "$destino"
 
-aqui = `"$(pwd)"`
+aqui=$(pwd)
+
 cd "$destino"
 
-if [ "$1" == "--install" || "$1" == "-i" || "$2" == "--install" || "$2" == "-i" ]; then
+if [ "$1" = "--install" ] || [ "$1" = "-i" ] || [ "$2" = "--install" ] || [ "$2" = "-i" ] || [ "$3" = "--install" ] || [ "$3" = "-i" ]
+then
    "$php" "$composer" install 
    "$php" "$composer" dump-autoload
 fi
 
-if [  "$1" == "--commit" || "$1" == "-c" || "$2" == "--commit" || "$2" == "-c"  ]; then
-
+if [ "$1" = "--commit" ] || [ "$1" = "-c" ] || [ "$2" == "--commit" ] || [ "$2" = "-c" ] || [ "$3" == "--commit" ] || [ "$3" = "-c" ]
+then
    fecha=`date "+%d-%m-%Y %H:%M"`
 
    git add -A
