@@ -25,22 +25,24 @@ Entonces ejecuto via linea de comandos desde la carpeta to7
 
 Ejecución:
 Ajustar código para que sea compatible con php 7.3 
-```./to7.sh [ -c | --commit] [ -i | --install ]```
+```./to7.sh [ -c | --commit] [ -i | --install ] [-h | --help]```
 
 Ejemplos:
 Ajustar código para que sea compatible con php 7.3 y ejecutar composer para instalar paquetes y hacer dump-autoload
 ```./to7.sh --install``` o ```./to7.sh ../proyecto -i```
 
-Ajustar código para que sea compatible con php 7.3 y ejecutar composer para instalar paquetes y subir el código actaulizaco al reporsitorio
+Ajustar código para que sea compatible con php 7.3 y ejecutar composer para instalar paquetes y subir el código actualizado al repositorio 
 ```./to7.sh --install --commit```
 
 Ajustar código para que sea compatible con php 7.3 y subir el código actaulizaco al reporsitorio
 ```./to7.sh --commit```
 
+Pedir ayuda de las opciones disponibles
 
 ## Advertencias
 
-- No hay garantía de éxito así que úselo con precaución
+- El repositorio donde se publican los cambios es el repositorio de código corregido (para subor al servidor donde se despliega el software) NO es el repositorio del código fuente para editarcon CodeCharge Studio
+- No hay garantía de éxito así que úselo con precaución y haga pruebas antes de usarlo definitivamente
 - Este script está basado en un script php publicado en el foro de usuarios de - codecharge de facebook
 - Seguramente hay muchas mejoras que hacer, yo sólo hice las que fueron siendo necesarias según mis necesidades
  
