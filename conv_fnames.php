@@ -268,6 +268,10 @@ function fix_fnames($path)
 	{
 		//Corrige asignación de una variable que luego va a ser un array
 		$str_result=str_replace('$values = "";', '$value = [];', $str_result);
+
+		//Elimina mención a get_magic_quotes_gpc() (Inutil desde php 5.4)
+		$str_result=str_replace('get_magic_quotes_gpc() != 0', 'false', $str_result);
+		
 	}
 
 	//Repara Classes.php
