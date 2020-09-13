@@ -267,11 +267,12 @@ function fix_fnames($path)
 	if(preg_match('/Common.php$/i', $path ))
 	{
 		//Corrige asignación de una variable que luego va a ser un array
-		$str_result=str_replace('$values = "";', '$value = [];', $str_result);
+		$str_result=str_ireplace('$values = "";', '$value = [];', $str_result);
+		$cnnt++;
 
 		//Elimina mención a get_magic_quotes_gpc() (Inutil desde php 5.4)
-		$str_result=str_replace('get_magic_quotes_gpc() != 0', 'false', $str_result);
-		
+		$str_result=str_ireplace('get_magic_quotes_gpc()', '1', $str_result);
+		$cnnt++;
 	}
 
 	//Repara Classes.php
@@ -282,6 +283,8 @@ function fix_fnames($path)
 
 		//Corrige valores en asignación de valores
 		$str_result=str_replace('foreach ($Values as $Val) {', 'foreach ($Value as $val) {', $str_result);
+
+		$cnnt++;
 
 	}
 
