@@ -5,7 +5,7 @@
 // dirty script to tranform CodeCharge Studio files to work with PHP7.2
 // Mayo 2020: agrega modificaciones Carlos
 // Julio 2010: Agrega compatibildad hasta php 7.3 
-// Ultima modificación 09/agosto/2020
+// Septiembre 2020: Modifica para compatibilidad con php 7.4
 ///////////////////////////////////////////////
 
 /// exit if script is not called from command line
