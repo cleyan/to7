@@ -3,7 +3,14 @@
 Este pequeño script ajusta el código generado en codecharge para ser compatible con php 7.x (probado hasta 7.4)
 
 ### Ejemplo de uso:
-Teniendo una carpeta llamada "proyecto" con el proyecto del código fuente de Codecharge
+El archivo de configuración to7.conf
+```
+repositorio="git@github.com:mysusername/project7.git"
+php="/usr/local/bin/php"
+composer="/usr/local/bin/composer"
+origen="../projectccs5"
+destino="../projectcc5tov7"
+```
 
 En el archivo de configuración se especifica:
 * repositorio: El repositorio (GIT) donde se guardará el código *modificado*
@@ -27,7 +34,7 @@ Entonces ejecuto via linea de comandos desde la carpeta to7
 (Todo esto válido para Linux o macOS, para Windows habría que hacer un .bat que reemplace al .sh)
 
 Ejecución:
-Ajustar código para que sea compatible con php 7.4
+* Ajustar código para que sea compatible con php 7.4
 ```./to7.sh [ -c | --commit] [ -i | --install ] [-h | --help]```
 
 
