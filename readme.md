@@ -1,4 +1,4 @@
-# Actualizar código de CodeCharge a php 7.x
+# Actualizar código de CodeCharge Studio 5.x para ser compatible con php 7.x
 
 Este pequeño script ajusta el código generado en codecharge para ser compatible con php 7.x (probado hasta 7.4)
 
@@ -16,8 +16,12 @@ En el archivo de configuración se especifica:
 * repositorio: El repositorio (GIT) donde se guardará el código *modificado*
 * php: La ruta del binario de php que se quiere usar (útil en el caso que tengan mas de una versión de php en el sistema) 
 * composer: La ruta del binario de composer, es necesario si se quiere ejecutar composer con otra versión de php distinta a la predeterminada del sistema
-* origen: el nombre de la carpeta por ejemplo ../proyecto (no sebe incluir el / al final)
-* destino: el nombre de la carpeta de l
+* origen: el nombre de la carpeta por ejemplo ```../projectccs5``` (no sebe incluir el / al final)
+* destino: el nombre de la carpeta del código corregido por ejemplo ```../projectcc5tov7``` (no s edebe incluír / al final)
+
+
+Las rutas de origen y destino pueden ser relativas a la carpeta donde está el script to7 o absoulutas por ejemplo ```/home/user/projects/projectccs5```
+
 
 La estructura de cómo se colocan las carpetas sería:
 ```
