@@ -39,7 +39,7 @@ then
 fi
 
 echo "Copiando Archivos desde $origen a $destino"
-rsync -r --delete "$origen"/ "$destino"/ --exclude .git --exclude vendor --exclude .idea
+rsync -r --delete  --exclude '.git' --exclude 'vendor' --exclude '.idea' --exclude '*.ccs' --exclude '*.ccp' "$origen"/ "$destino"/
 
 if [ ! -d "$destino" ]
 then
